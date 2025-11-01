@@ -1,0 +1,144 @@
+{
+  "projectInfo": {
+    "title": "Estudio de Viabilidad Técnico-Económico",
+    "client": "Verytel S.A.S.",
+    "loadProfile": {
+      "power": {
+        "value": 74.71,
+        "unit": "W",
+        "label": "Demanda de Potencia Continua"
+      },
+      "energy": {
+        "value": 1.793,
+        "unit": "kWh/día",
+        "label": "Demanda de Energía Diaria"
+      }
+    }
+  },
+  "kpis": {
+    "primaryRecommendation": "Sistema Solar FV",
+    "mostCostEffectiveLcoe": {
+      "value": 0.74,
+      "unit": "$/kWh",
+      "system": "Solar FV"
+    },
+    "viableAlternativeLcoe": {
+      "value": 0.94,
+      "unit": "$/kWh",
+      "system": "Eólico"
+    },
+    "notRecommendedLcoe": {
+      "value": 20.40,
+      "unit": "$/kWh",
+      "system": "DMFC"
+    }
+  },
+  "alternatives": [
+    {
+      "id": "solar",
+      "name": "Sistema Solar FV",
+      "context": "Bogotá D.C.",
+      "costs": {
+        "capex": 5200,
+        "opexAnnual": 75,
+        "lcoe": 0.74,
+        "replacementCost": 3000
+      },
+      "design": {
+        "generator": "Panel de 600 Wp",
+        "storage": "7.2 kWh (24V, 300Ah)",
+        "autonomy": "3 días (Batería)"
+      },
+      "logistics": {
+        "maintenance": "Muy bajo (Limpieza anual)",
+        "dependency": "Nula",
+        "scalabilityNotes": "Excelente. Reducción CAPEX 25-30% para 1,000 unidades."
+      }
+    },
+    {
+      "id": "eolico",
+      "name": "Sistema Eólico",
+      "context": "Alta Guajira",
+      "costs": {
+        "capex": 6100,
+        "opexAnnual": 150,
+        "lcoe": 0.94,
+        "replacementCost": 3200
+      },
+      "design": {
+        "generator": "Turbina de 600 W",
+        "storage": "7.2 kWh (24V, 300Ah)",
+        "autonomy": "3 días (Batería)"
+      },
+      "logistics": {
+        "maintenance": "Moderado (Inspección mecánica anual)",
+        "dependency": "Nula",
+        "scalabilityNotes": "Buena. Reducción CAPEX 25-30% para 1,000 unidades."
+      }
+    },
+    {
+      "id": "dmfc",
+      "name": "Sistema DMFC (Metanol)",
+      "context": "Agnóstico a la ubicación",
+      "costs": {
+        "capex": 9500,
+        "opexAnnual": 12678,
+        "lcoe": 20.40,
+        "replacementCost": 4000
+      },
+      "design": {
+        "generator": "Celda EFOY Pro 2800 (125 W)",
+        "storage": "Batería buffer (24V, 100Ah)",
+        "autonomy": "~17.4 días (Combustible)"
+      },
+      "logistics": {
+        "maintenance": "Extremo (21 visitas/año por nodo)",
+        "dependency": "Extrema",
+        "scalabilityNotes": "Inviable. OPEX escala linealmente (21,000 visitas/año para 1,000 unidades)."
+      }
+    }
+  ],
+  "decisionMatrix": {
+    "categories": [
+      { "name": "LCOE ($/kWh)", "weight": 0.30 },
+      { "name": "CAPEX Inicial", "weight": 0.20 },
+      { "name": "Fiabilidad / Tiempo de Actividad", "weight": 0.25 },
+      { "name": "Complejidad de Mantenimiento", "weight": 0.15 },
+      { "name": "Dependencia Logística", "weight": 0.10 }
+    ],
+    "scores": [
+      {
+        "system": "Solar FV",
+        "values": [5, 4, 4, 5, 5],
+        "totalScore": 4.45
+      },
+      {
+        "system": "Eólico",
+        "values": [4, 3, 4, 3, 5],
+        "totalScore": 3.75
+      },
+      {
+        "system": "DMFC",
+        "values": [1, 2, 5, 2, 1],
+        "totalScore": 2.45
+      }
+    ]
+  },
+  "strategicRecommendations": [
+    {
+      "id": "rec1",
+      "title": "Solución Estándar",
+      "recommendation": "Usar **Sistema Solar FV** como la solución por defecto para todos los despliegues."
+    },
+    {
+      "id": "rec2",
+      "title": "Arquitectura de Despliegue",
+      "recommendation": "Implementar **Micro-redes** (generación centralizada) para cualquier clúster de 2 o más cámaras en proximidad para maximizar ahorros."
+    },
+    {
+      "id": "rec3",
+      "title": "Uso Táctico de DMFC",
+      "recommendation": "Relegar la tecnología DMFC **exclusivamente** a un rol de *respaldo* (backup) en sitios de misión crítica donde el costo sea secundario."
+    }
+  ]
+}
