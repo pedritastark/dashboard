@@ -29,59 +29,66 @@ const RecommendationBox = styled(Box)(({ theme }) => ({
 
 const RecommendationsCard = ({ recommendations }) => {
   return (
-    <StyledCard elevation={0}>
-      <CardContent sx={{ p: 3 }}>
-        <List sx={{ p: 0 }}>
-          {recommendations.map((rec, index) => (
-            <ListItem key={rec.id} sx={{ p: 0, mb: 2, display: 'block', alignItems: 'flex-start' }}>
-              <RecommendationBox>
-                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                  <ListItemIcon sx={{ minWidth: 40, mt: 0.5 }}>
-                    <CheckCircleIcon 
-                      sx={{ 
-                        fontSize: 28,
-                        color: 'primary.700',
-                      }} 
-                    />
-                  </ListItemIcon>
-                  <Box sx={{ flex: 1 }}>
-                    <Typography 
-                      variant="subtitle1" 
-                      sx={{ 
-                        fontWeight: 600,
-                        color: 'primary.900',
-                        mb: 1,
-                      }}
-                    >
-                      {rec.title}
-                    </Typography>
-                    <Typography 
-                      variant="body1" 
-                      component="div"
-                      sx={{ 
-                        color: 'text.primary',
-                        lineHeight: 1.7,
-                        '& strong': { 
-                          fontWeight: 600, 
-                          color: 'primary.900' 
-                        },
-                        '& em': { 
-                          fontStyle: 'italic',
+    <StyledCard elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5, color: 'primary.900', fontSize: '0.75rem' }}>
+          Recomendaciones Estratégicas
+        </Typography>
+        <Box sx={{ flex: 1, overflow: 'auto' }}>
+          <List sx={{ p: 0 }}>
+            {recommendations.map((rec, index) => (
+              <ListItem key={rec.id} sx={{ p: 0, mb: 1.5, display: 'block', alignItems: 'flex-start' }}>
+                <RecommendationBox>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
+                    <ListItemIcon sx={{ minWidth: 32, mt: 0.25 }}>
+                      <CheckCircleIcon 
+                        sx={{ 
+                          fontSize: 20,
                           color: 'primary.700',
-                        }
-                      }}
-                      dangerouslySetInnerHTML={{
-                        __html: rec.recommendation
-                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                      }}
-                    />
+                        }} 
+                      />
+                    </ListItemIcon>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography 
+                        variant="subtitle2" 
+                        sx={{ 
+                          fontWeight: 600,
+                          color: 'primary.900',
+                          mb: 0.5,
+                          fontSize: '0.75rem',
+                        }}
+                      >
+                        {rec.title}
+                      </Typography>
+                      <Typography 
+                        variant="caption" 
+                        component="div"
+                        sx={{ 
+                          color: 'text.primary',
+                          lineHeight: 1.6,
+                          fontSize: '0.7rem',
+                          '& strong': { 
+                            fontWeight: 600, 
+                            color: 'primary.900' 
+                          },
+                          '& em': { 
+                            fontStyle: 'italic',
+                            color: 'primary.700',
+                          }
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: rec.recommendation
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        }}
+                      />
+                    </Box>
                   </Box>
-                </Box>
-              </RecommendationBox>
-            </ListItem>
-          ))}
-        </List>
+                </RecommendationBox>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </CardContent>
     </StyledCard>
   );

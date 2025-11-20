@@ -23,35 +23,89 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const DisenoTable = ({ alternatives }) => {
   return (
-    <StyledCard elevation={0}>
-      <CardContent sx={{ p: 3 }}>
+    <StyledCard elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5, color: 'primary.900', fontSize: '0.75rem' }}>
+          Especificaciones Técnicas
+        </Typography>
         <TableContainer 
           component={Paper} 
           variant="outlined"
           sx={{ 
-            borderRadius: 2,
+            borderRadius: 1.5,
             border: '1px solid',
             borderColor: 'primary.200',
-            overflow: 'hidden',
+            overflow: 'auto',
+            flex: 1,
           }}
         >
-          <Table>
+          <Table size="small" stickyHeader>
             <TableHead>
-              <TableRow sx={{ background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)' }}>
-                <TableCell sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>Sistema</TableCell>
-                <TableCell sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>Contexto</TableCell>
-                <TableCell sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>Generador</TableCell>
-                <TableCell sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>Almacenamiento</TableCell>
-                <TableCell sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>Autonomía</TableCell>
-                <TableCell align="right" sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>
-                  CAPEX ($)
-                </TableCell>
-                <TableCell align="right" sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>
-                  OPEX Anual ($)
-                </TableCell>
-                <TableCell align="right" sx={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem' }}>
-                  LCOE ($/kWh)
-                </TableCell>
+              <TableRow>
+                <TableCell sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>Sistema</TableCell>
+                <TableCell sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>Contexto</TableCell>
+                <TableCell sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>Generador</TableCell>
+                <TableCell sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>Almacenamiento</TableCell>
+                <TableCell sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>Autonomía</TableCell>
+                <TableCell align="right" sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>CAPEX ($)</TableCell>
+                <TableCell align="right" sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>OPEX Anual ($)</TableCell>
+                <TableCell align="right" sx={{ 
+                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  color: '#ffffff !important',
+                  fontWeight: 600,
+                  fontSize: '0.7rem',
+                  py: 1,
+                  borderBottom: 'none',
+                }}>LCOE ($/kWh)</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -64,10 +118,10 @@ const DisenoTable = ({ alternatives }) => {
                     transition: 'background-color 0.2s',
                   }}
                 >
-                  <TableCell component="th" scope="row" sx={{ fontWeight: 500, color: 'primary.900' }}>
+                  <TableCell component="th" scope="row" sx={{ fontWeight: 500, color: 'primary.900', fontSize: '0.7rem', py: 1 }}>
                     {alt.name}
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ py: 1 }}>
                     <Chip 
                       label={alt.context} 
                       size="small" 
@@ -77,19 +131,21 @@ const DisenoTable = ({ alternatives }) => {
                         fontWeight: 500,
                         border: '1px solid',
                         borderColor: 'primary.300',
+                        fontSize: '0.65rem',
+                        height: 20,
                       }} 
                     />
                   </TableCell>
-                  <TableCell sx={{ color: 'text.secondary' }}>{alt.design.generator}</TableCell>
-                  <TableCell sx={{ color: 'text.secondary' }}>{alt.design.storage}</TableCell>
-                  <TableCell sx={{ color: 'text.secondary' }}>{alt.design.autonomy}</TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.900' }}>
+                  <TableCell sx={{ color: 'text.secondary', fontSize: '0.7rem', py: 1 }}>{alt.design.generator}</TableCell>
+                  <TableCell sx={{ color: 'text.secondary', fontSize: '0.7rem', py: 1 }}>{alt.design.storage}</TableCell>
+                  <TableCell sx={{ color: 'text.secondary', fontSize: '0.7rem', py: 1 }}>{alt.design.autonomy}</TableCell>
+                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.900', fontSize: '0.7rem', py: 1 }}>
                     ${alt.costs.capex.toLocaleString()}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.900' }}>
+                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.900', fontSize: '0.7rem', py: 1 }}>
                     ${alt.costs.opexAnnual.toLocaleString()}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.700' }}>
+                  <TableCell align="right" sx={{ fontWeight: 600, color: 'primary.700', fontSize: '0.7rem', py: 1 }}>
                     ${alt.costs.lcoe.toFixed(2)}
                   </TableCell>
                 </TableRow>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -9,9 +9,16 @@ const StyledCard = styled(Card)(({ theme }) => ({
   background: '#ffffff',
   border: `1px solid ${theme.palette.primary[200]}`,
   transition: 'all 0.3s ease',
-  minHeight: '160px',
+  minHeight: '120px',
+  opacity: 0,
+  transform: 'translateX(-20px)',
+  '&.loaded': {
+    opacity: 1,
+    transform: 'translateX(0)',
+    transition: 'opacity 0.6s ease, transform 0.6s ease',
+  },
   '&:hover': {
-    transform: 'translateY(-4px)',
+    transform: 'translateY(-2px)',
     boxShadow: theme.shadows[4],
     borderColor: theme.palette.primary[400],
   },
@@ -22,20 +29,30 @@ const HighlightedCard = styled(StyledCard)(({ theme }) => ({
   border: `2px solid ${theme.palette.primary[500]}`,
 }));
 
-const KpiCard = ({ title, value, unit, system, icon: Icon, highlight = false }) => {
+const KpiCard = ({ title, value, unit, system, icon: Icon, highlight = false, delay = 0, isLoaded = false }) => {
   const CardComponent = highlight ? HighlightedCard : StyledCard;
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    if (isLoaded) {
+      const timer = setTimeout(() => {
+        setAnimated(true);
+      }, delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded, delay]);
   
   return (
-    <CardComponent elevation={0}>
-      <CardContent sx={{ p: 3 }}>
-        <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
-          <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
+    <CardComponent elevation={0} className={animated ? 'loaded' : ''}>
+      <CardContent sx={{ p: 2 }}>
+        <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1.5}>
+          <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, fontSize: '0.7rem' }}>
             {title}
           </Typography>
           {Icon && (
             <Icon 
               sx={{ 
-                fontSize: 28, 
+                fontSize: 20, 
                 color: 'primary.600',
                 opacity: 0.8,
               }} 
@@ -43,24 +60,26 @@ const KpiCard = ({ title, value, unit, system, icon: Icon, highlight = false }) 
           )}
         </Box>
         <Typography 
-          variant="h4" 
+          variant="h5" 
           component="div" 
           sx={{ 
             fontWeight: 700, 
             color: 'primary.900',
             mb: 1,
             letterSpacing: '-0.02em',
+            fontSize: '1.25rem',
           }}
         >
           {value}
           {unit && (
             <Typography 
               component="span" 
-              variant="body1" 
+              variant="body2" 
               sx={{ 
-                ml: 1, 
+                ml: 0.5, 
                 color: 'text.secondary',
                 fontWeight: 500,
+                fontSize: '0.875rem',
               }}
             >
               {unit}
@@ -72,12 +91,14 @@ const KpiCard = ({ title, value, unit, system, icon: Icon, highlight = false }) 
             label={system} 
             size="small" 
             sx={{ 
-              mt: 1,
+              mt: 0.5,
               bgcolor: 'primary.100',
               color: 'primary.900',
               fontWeight: 500,
               border: '1px solid',
               borderColor: 'primary.300',
+              fontSize: '0.65rem',
+              height: 20,
             }}
           />
         )}
