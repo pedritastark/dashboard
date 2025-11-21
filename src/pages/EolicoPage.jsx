@@ -133,57 +133,57 @@ const EolicoPage = () => {
         >
           {/* KPIs principales */}
           <StyledCard>
-            <CardContent sx={{ p: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+              <Typography variant="caption" sx={{ color: eolicoTheme[700], mb: 0.75, fontWeight: 600, display: 'block', fontSize: '0.7rem' }}>
                 CAPEX Total
               </Typography>
-              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+              <Typography variant="h4" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.25, fontSize: '1.5rem', lineHeight: 1.2 }}>
                 ${system.costs.capex.toLocaleString()}
               </Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography variant="caption" sx={{ color: 'text.secondary', fontSize: '0.65rem' }}>
                 LCOE: ${system.costs.lcoe}/kWh
               </Typography>
             </CardContent>
           </StyledCard>
 
           <StyledCard>
-            <CardContent sx={{ p: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+              <Typography variant="caption" sx={{ color: eolicoTheme[700], mb: 0.75, fontWeight: 600, display: 'block', fontSize: '0.7rem' }}>
                 OPEX Anual
               </Typography>
-              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+              <Typography variant="h4" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.25, fontSize: '1.5rem', lineHeight: 1.2 }}>
                 ${system.costs.opexAnnual}
               </Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography variant="caption" sx={{ color: 'text.secondary', fontSize: '0.65rem' }}>
                 Mantenimiento mecánico
               </Typography>
             </CardContent>
           </StyledCard>
 
           <StyledCard>
-            <CardContent sx={{ p: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+              <Typography variant="caption" sx={{ color: eolicoTheme[700], mb: 0.75, fontWeight: 600, display: 'block', fontSize: '0.7rem' }}>
                 TCO (20 años)
               </Typography>
-              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+              <Typography variant="h4" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.25, fontSize: '1.5rem', lineHeight: 1.2 }}>
                 ${system.costs.tco20Years.toLocaleString()}
               </Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography variant="caption" sx={{ color: 'text.secondary', fontSize: '0.65rem' }}>
                 Costo total de propiedad
               </Typography>
             </CardContent>
           </StyledCard>
 
           <StyledCard>
-            <CardContent sx={{ p: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+              <Typography variant="caption" sx={{ color: eolicoTheme[700], mb: 0.75, fontWeight: 600, display: 'block', fontSize: '0.7rem' }}>
                 Vida Útil
               </Typography>
-              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
-                {system.logistics.lifetime}
+              <Typography variant="h4" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.25, fontSize: '1.5rem', lineHeight: 1.2 }}>
+                7 años*
               </Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                Ambiente salino
+              <Typography variant="caption" sx={{ color: 'text.secondary', fontSize: '0.6rem', lineHeight: 1.2 }}>
+                *Componentes móviles en ambiente salino
               </Typography>
             </CardContent>
           </StyledCard>

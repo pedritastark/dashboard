@@ -13,7 +13,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 const InfoBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
-  background: 'linear-gradient(135deg, #eaefff 0%, #d8e1ff 100%)',
+  background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
   border: `1px solid ${theme.palette.primary[300]}`,
   transition: 'all 0.3s ease',
   '&:hover': {

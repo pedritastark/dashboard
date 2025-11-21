@@ -43,7 +43,7 @@ const DisenoTable = ({ alternatives }) => {
             <TableHead>
               <TableRow>
                 <TableCell sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -51,7 +51,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>Sistema</TableCell>
                 <TableCell sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -59,7 +59,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>Contexto</TableCell>
                 <TableCell sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -67,7 +67,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>Generador</TableCell>
                 <TableCell sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -75,7 +75,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>Almacenamiento</TableCell>
                 <TableCell sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -83,7 +83,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>Autonomía</TableCell>
                 <TableCell align="right" sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -91,7 +91,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>CAPEX ($)</TableCell>
                 <TableCell align="right" sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',
@@ -99,7 +99,7 @@ const DisenoTable = ({ alternatives }) => {
                   borderBottom: 'none',
                 }}>OPEX Anual ($)</TableCell>
                 <TableCell align="right" sx={{ 
-                  background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                   color: '#ffffff !important',
                   fontWeight: 600,
                   fontSize: '0.7rem',

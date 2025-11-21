@@ -28,8 +28,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-// Usar colores de la paleta azul
-const COLORS = ['#2a11e4', '#371fff', '#646dff'];
+// Usar colores de la paleta gris slate
+const COLORS = ['#475569', '#64748b', '#334155'];
 
 const LcoeChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
   const [animated, setAnimated] = useState(false);
@@ -73,7 +73,7 @@ const LcoeChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
               }}
               barCategoryGap="20%"
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#d8e1ff" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis 
                 dataKey="name" 
                 stroke="#64748b" 
@@ -90,7 +90,7 @@ const LcoeChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
                 labelFormatter={(label) => chartData.find(d => d.name === label)?.fullName || label}
                 contentStyle={{
                   backgroundColor: '#ffffff',
-                  border: '1px solid #bac7ff',
+                  border: '1px solid #cbd5e1',
                   borderRadius: '8px',
                   fontSize: '12px',
                 }}

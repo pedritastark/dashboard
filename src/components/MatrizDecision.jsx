@@ -49,15 +49,15 @@ const SYSTEM_COLORS = {
   },
 };
 
-// Obtener color por sistema, con fallback a azul
+// Obtener color por sistema, con fallback a gris slate
 const getSystemColor = (systemName) => {
   return SYSTEM_COLORS[systemName] || {
-    primary: '#2a11e4',
-    light: '#eaefff',
-    medium: '#646dff',
-    dark: '#231a95',
-    fill: '#2a11e4',
-    stroke: '#231a95',
+    primary: '#475569',
+    light: '#f1f5f9',
+    medium: '#64748b',
+    dark: '#334155',
+    fill: '#475569',
+    stroke: '#334155',
   };
 };
 
@@ -190,7 +190,7 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ 
-                    background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                    background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                     color: '#ffffff !important',
                     fontWeight: 600,
                     fontSize: '0.7rem',
@@ -200,7 +200,7 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
                     Categoría
                   </TableCell>
                   <TableCell align="center" sx={{ 
-                    background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                    background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                     color: '#ffffff !important',
                     fontWeight: 600,
                     fontSize: '0.7rem',
@@ -216,7 +216,7 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
                         key={sistema.sistema} 
                         align="center" 
                         sx={{ 
-                          background: 'linear-gradient(135deg, #2a11e4 0%, #371fff 100%)',
+                          background: 'linear-gradient(135deg, #475569 0%, #334155 100%)',
                           color: '#ffffff !important',
                           fontWeight: 600,
                           fontSize: '0.7rem',

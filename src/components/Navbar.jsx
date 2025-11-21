@@ -32,7 +32,44 @@ const Navbar = ({ projectInfo }) => {
     handleClose();
   };
 
+  // Definir colores según la ruta actual
+  const getNavbarTheme = () => {
+    const path = location.pathname;
+    if (path === '/') {
+      // Home - Gris Slate
+      return {
+        background: 'rgba(71, 85, 105, 0.7)',
+        boxShadow: '0 8px 32px 0 rgba(71, 85, 105, 0.3)',
+      };
+    } else if (path === '/solar') {
+      // Solar - Amarillo
+      return {
+        background: 'rgba(245, 158, 11, 0.7)',
+        boxShadow: '0 8px 32px 0 rgba(245, 158, 11, 0.3)',
+      };
+    } else if (path === '/eolico') {
+      // Eólico - Azul Cielo
+      return {
+        background: 'rgba(14, 165, 233, 0.7)',
+        boxShadow: '0 8px 32px 0 rgba(14, 165, 233, 0.3)',
+      };
+    } else if (path === '/dmfc') {
+      // DMFC - Verde Gasolina
+      return {
+        background: 'rgba(34, 197, 94, 0.7)',
+        boxShadow: '0 8px 32px 0 rgba(34, 197, 94, 0.3)',
+      };
+    } else {
+      // Fallback - Negro
+      return {
+        background: 'rgba(0, 0, 0, 0.7)',
+        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+      };
+    }
+  };
+
   const isHome = location.pathname === '/';
+  const navbarTheme = getNavbarTheme();
 
   return (
     <Box
@@ -50,12 +87,12 @@ const Navbar = ({ projectInfo }) => {
         position="static" 
         elevation={0}
         sx={{ 
-          background: isHome ? 'rgba(42, 17, 228, 0.7)' : 'rgba(0, 0, 0, 0.7)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: navbarTheme.background,
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
           borderRadius: '50px',
           border: '1px solid rgba(255, 255, 255, 0.2)',
-          boxShadow: isHome ? '0 8px 32px 0 rgba(42, 17, 228, 0.3)' : '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+          boxShadow: navbarTheme.boxShadow,
         }}
       >
         <Toolbar sx={{ py: 0.75, px: 2 }}>
