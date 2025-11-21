@@ -112,81 +112,95 @@ const EolicoPage = () => {
               <Chip label={system.context} sx={{ bgcolor: eolicoTheme[100], color: eolicoTheme[800], fontWeight: 600 }} />
             </Box>
           </Box>
-          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '800px' }}>
+          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '100%' }}>
             Sistema de micro-generación eólica diseñado para aprovechar el recurso eólico excepcional 
             de Clase 7 en la Alta Guajira. Requiere infraestructura especializada y mantenimiento 
             mecánico regular debido a sus componentes móviles.
           </Typography>
         </Box>
 
-        <Grid container spacing={2}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(4, 1fr)',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* KPIs principales */}
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  CAPEX Total
-                </Typography>
-                <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.capex.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  LCOE: ${system.costs.lcoe}/kWh
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+                CAPEX Total
+              </Typography>
+              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.capex.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                LCOE: ${system.costs.lcoe}/kWh
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  OPEX Anual
-                </Typography>
-                <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.opexAnnual}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Mantenimiento mecánico
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+                OPEX Anual
+              </Typography>
+              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.opexAnnual}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Mantenimiento mecánico
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  TCO (20 años)
-                </Typography>
-                <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.tco20Years.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Costo total de propiedad
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+                TCO (20 años)
+              </Typography>
+              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.tco20Years.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Costo total de propiedad
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  Vida Útil
-                </Typography>
-                <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  {system.logistics.lifetime}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Ambiente salino
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: eolicoTheme[700], mb: 1.5, fontWeight: 600 }}>
+                Vida Útil
+              </Typography>
+              <Typography variant="h3" sx={{ color: eolicoTheme[600], fontWeight: 700, mb: 0.5 }}>
+                {system.logistics.lifetime}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Ambiente salino
+              </Typography>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Desglose de CAPEX */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
@@ -205,12 +219,10 @@ const EolicoPage = () => {
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Curva de Potencia */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
@@ -228,12 +240,22 @@ const EolicoPage = () => {
                 <Typography variant="caption" sx={{ color: 'text.secondary', mt: 1, display: 'block' }}>
                   La potencia varía con el cubo de la velocidad del viento (P ∝ v³)
                 </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Especificaciones Técnicas */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
@@ -273,12 +295,10 @@ const EolicoPage = () => {
                     </TableBody>
                   </Table>
                 </TableContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Mantenimiento y Logística */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
@@ -326,17 +346,17 @@ const EolicoPage = () => {
                     </Typography>
                   </Box>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
-          {/* Escalabilidad */}
-          <Grid item xs={12}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
-                  Viabilidad por Escala de Despliegue
-                </Typography>
+        {/* Escalabilidad */}
+        <Box sx={{ mb: 2 }}>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
+                Viabilidad por Escala de Despliegue
+              </Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={scalabilityData}>
                     <CartesianGrid strokeDasharray="3 3" stroke={eolicoTheme[200]} />
@@ -357,10 +377,9 @@ const EolicoPage = () => {
                     reduciendo los puntos de mantenimiento de 1,000 a solo 20-50 máquinas más robustas.
                   </Typography>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
       </Container>
     </Box>
   );

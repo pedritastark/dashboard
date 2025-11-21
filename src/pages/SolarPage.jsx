@@ -5,7 +5,6 @@ import {
   Box, 
   Card,
   CardContent,
-  Grid,
   Chip,
   Table,
   TableBody,
@@ -115,151 +114,163 @@ const SolarPage = () => {
               <Chip label={system.context} sx={{ bgcolor: solarTheme[100], color: solarTheme[800], fontWeight: 600 }} />
             </Box>
           </Box>
-          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '800px' }}>
+          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '100%' }}>
             Sistema fotovoltaico robusto diseñado para garantizar una disponibilidad operativa superior al 99.7% 
             en las condiciones climáticas de Bogotá, con sobredimensionamiento estratégico para manejar la variabilidad 
             climática característica de la región Andina.
           </Typography>
         </Box>
 
-        <Grid container spacing={2}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(4, 1fr)',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Métricas de Rendimiento */}
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  Disponibilidad
-                </Typography>
-                <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  99.77%
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Probabilidad de Pérdida de Carga: 0.23%
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
+                Disponibilidad
+              </Typography>
+              <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
+                99.77%
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Probabilidad de Pérdida de Carga: 0.23%
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  CAPEX Total
-                </Typography>
-                <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.capex.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  LCOE: ${system.costs.lcoe}/kWh
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
+                CAPEX Total
+              </Typography>
+              <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.capex.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                LCOE: ${system.costs.lcoe}/kWh
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  OPEX Anual
-                </Typography>
-                <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.opexAnnual}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Mantenimiento mínimo
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
+                OPEX Anual
+              </Typography>
+              <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.opexAnnual}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Mantenimiento mínimo
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  TCO (20 años)
-                </Typography>
-                <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.tco20Years.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Costo total de propiedad
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: solarTheme[700], mb: 1.5, fontWeight: 600 }}>
+                TCO (20 años)
+              </Typography>
+              <Typography variant="h3" sx={{ color: solarTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.tco20Years.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Costo total de propiedad
+              </Typography>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Desglose de CAPEX */}
-          <Grid item xs={12} md={6}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
-                  Desglose de CAPEX
-                </Typography>
-                <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={capexBreakdown}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
-                    <XAxis dataKey="name" stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
-                    <YAxis stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
-                    <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                    <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                      {capexBreakdown.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
+                Desglose de CAPEX
+              </Typography>
+              <ResponsiveContainer width="100%" height={250}>
+                <BarChart data={capexBreakdown}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
+                  <XAxis dataKey="name" stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
+                  <YAxis stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
+                  <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                  <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                    {capexBreakdown.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </StyledCard>
 
           {/* Especificaciones Técnicas */}
-          <Grid item xs={12} md={6}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
-                  Especificaciones Técnicas
-                </Typography>
-                <TableContainer>
-                  <Table size="small">
-                    <TableBody>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Generador</TableCell>
-                        <TableCell>{system.design.generator}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Almacenamiento</TableCell>
-                        <TableCell>{system.design.storage}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Capacidad</TableCell>
-                        <TableCell>{system.design.capacity}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Autonomía</TableCell>
-                        <TableCell>{system.design.autonomy}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Inclinación</TableCell>
-                        <TableCell>10°-15° con orientación Sur</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Huella</TableCell>
-                        <TableCell>{system.logistics.footprint}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
+                Especificaciones Técnicas
+              </Typography>
+              <TableContainer>
+                <Table size="small">
+                  <TableBody>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Generador</TableCell>
+                      <TableCell>{system.design.generator}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Almacenamiento</TableCell>
+                      <TableCell>{system.design.storage}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Capacidad</TableCell>
+                      <TableCell>{system.design.capacity}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Autonomía</TableCell>
+                      <TableCell>{system.design.autonomy}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Inclinación</TableCell>
+                      <TableCell>10°-15° con orientación Sur</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ fontWeight: 600, color: solarTheme[700] }}>Huella</TableCell>
+                      <TableCell>{system.logistics.footprint}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
-          {/* Escalabilidad */}
-          <Grid item xs={12}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
-                  Análisis de Escalabilidad
-                </Typography>
+        {/* Escalabilidad */}
+        <Box sx={{ mb: 2 }}>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
+                Análisis de Escalabilidad
+              </Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={scalabilityData}>
                     <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
@@ -271,17 +282,26 @@ const SolarPage = () => {
                     <Line yAxisId="right" type="monotone" dataKey="baterias" stroke={solarTheme[600]} strokeWidth={3} name="Baterías" />
                   </LineChart>
                 </ResponsiveContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+          }}
+        >
           {/* Mantenimiento y Logística */}
-          <Grid item xs={12} md={6}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
-                  Mantenimiento y Logística
-                </Typography>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
+                Mantenimiento y Logística
+              </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   <Box>
                     <Typography variant="subtitle2" sx={{ color: solarTheme[700], fontWeight: 600 }}>
@@ -316,43 +336,47 @@ const SolarPage = () => {
                     </Typography>
                   </Box>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Rendimiento */}
-          <Grid item xs={12} md={6}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
-                  Métricas de Rendimiento
-                </Typography>
-                <Grid container spacing={2}>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
+                Métricas de Rendimiento
+              </Typography>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: 1.5,
+                }}
+              >
                   {performanceMetrics.map((metric, index) => (
-                    <Grid item xs={6} key={index}>
-                      <Box sx={{ 
+                    <Box 
+                      key={index}
+                      sx={{ 
                         p: 1.5, 
                         borderRadius: 1, 
                         bgcolor: solarTheme[50],
                         border: `1px solid ${solarTheme[200]}`,
-                      }}>
-                        <Box sx={{ color: solarTheme[600], mb: 0.5 }}>
-                          {metric.icon}
-                        </Box>
-                        <Typography variant="caption" sx={{ color: solarTheme[700], display: 'block', mb: 0.5, fontWeight: 600 }}>
-                          {metric.metric}
-                        </Typography>
-                        <Typography variant="h6" sx={{ color: solarTheme[900], fontWeight: 700 }}>
-                          {metric.value}
-                        </Typography>
+                      }}
+                    >
+                      <Box sx={{ color: solarTheme[600], mb: 0.5 }}>
+                        {metric.icon}
                       </Box>
-                    </Grid>
+                      <Typography variant="caption" sx={{ color: solarTheme[700], display: 'block', mb: 0.5, fontWeight: 600 }}>
+                        {metric.metric}
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: solarTheme[900], fontWeight: 700 }}>
+                        {metric.value}
+                      </Typography>
+                    </Box>
                   ))}
-                </Grid>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        </Grid>
+              </Box>
+            </CardContent>
+          </StyledCard>
+        </Box>
       </Container>
     </Box>
   );

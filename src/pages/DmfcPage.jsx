@@ -127,81 +127,95 @@ const DmfcPage = () => {
               del 5% del tiempo.
             </Typography>
           </Alert>
-          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '800px' }}>
+          <Typography variant="body1" sx={{ color: 'text.secondary', maxWidth: '100%' }}>
             Sistema de celda de combustible de metanol directo que garantiza disponibilidad energética del 100% 
             independiente de condiciones climáticas. Funciona como generador bajo demanda con autonomía limitada 
             por la capacidad del cartucho de combustible.
           </Typography>
         </Box>
 
-        <Grid container spacing={2}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(4, 1fr)',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* KPIs principales */}
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  CAPEX Total
-                </Typography>
-                <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.capex.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  LCOE: ${system.costs.lcoe}/kWh
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
+                CAPEX Total
+              </Typography>
+              <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.capex.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                LCOE: ${system.costs.lcoe}/kWh
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  OPEX Anual
-                </Typography>
-                <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.opexAnnual.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Incluye combustible y reemplazo
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
+                OPEX Anual
+              </Typography>
+              <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.opexAnnual.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Incluye combustible y reemplazo
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  TCO (20 años)
-                </Typography>
-                <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
-                  ${system.costs.tco20Years.toLocaleString()}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Costo total de propiedad
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
+                TCO (20 años)
+              </Typography>
+              <Typography variant="h3" sx={{ color: dmfcTheme[600], fontWeight: 700, mb: 0.5 }}>
+                ${system.costs.tco20Years.toLocaleString()}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Costo total de propiedad
+              </Typography>
+            </CardContent>
+          </StyledCard>
 
-          <Grid item xs={12} md={6} lg={3}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
-                  Vida Útil
-                </Typography>
-                <Typography variant="body2" sx={{ color: dmfcTheme[700], fontWeight: 600, mb: 0.5 }}>
-                  {system.logistics.lifetime}
-                </Typography>
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Como fuente primaria: &lt;1 año
-                </Typography>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="subtitle2" sx={{ color: dmfcTheme[700], mb: 1.5, fontWeight: 600 }}>
+                Vida Útil
+              </Typography>
+              <Typography variant="body2" sx={{ color: dmfcTheme[700], fontWeight: 600, mb: 0.5 }}>
+                {system.logistics.lifetime}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                Como fuente primaria: &lt;1 año
+              </Typography>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Desglose de CAPEX */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
@@ -220,12 +234,10 @@ const DmfcPage = () => {
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Desglose de OPEX */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
@@ -244,12 +256,10 @@ const DmfcPage = () => {
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Autonomía por Cartucho */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
@@ -279,12 +289,22 @@ const DmfcPage = () => {
                     Consumo: {system.design.fuelConsumption}
                   </Typography>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              lg: '1fr 1fr',
+            },
+            gap: 1.5,
+            mb: 2,
+          }}
+        >
           {/* Especificaciones Técnicas */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
@@ -328,12 +348,10 @@ const DmfcPage = () => {
                     </TableBody>
                   </Table>
                 </TableContainer>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
 
           {/* Mantenimiento y Logística */}
-          <Grid item xs={12} md={6}>
             <StyledCard>
               <CardContent sx={{ p: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
@@ -397,17 +415,17 @@ const DmfcPage = () => {
                     </Typography>
                   </Box>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
 
-          {/* Escalabilidad */}
-          <Grid item xs={12}>
-            <StyledCard>
-              <CardContent sx={{ p: 2 }}>
-                <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
-                  Impacto Logístico por Escala
-                </Typography>
+        {/* Escalabilidad */}
+        <Box sx={{ mb: 2 }}>
+          <StyledCard>
+            <CardContent sx={{ p: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
+                Impacto Logístico por Escala
+              </Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={scalabilityData}>
                     <CartesianGrid strokeDasharray="3 3" stroke={dmfcTheme[200]} />
@@ -428,10 +446,9 @@ const DmfcPage = () => {
                     viable y extremadamente robusto para garantizar disponibilidad total incluso en eventos prolongados de baja radiación.
                   </Typography>
                 </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        </Grid>
+            </CardContent>
+          </StyledCard>
+        </Box>
       </Container>
     </Box>
   );
