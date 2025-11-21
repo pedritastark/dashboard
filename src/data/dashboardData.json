@@ -1,6 +1,7 @@
 {
   "projectInfo": {
     "title": "Estudio de Viabilidad Técnico-Económico",
+    "subtitle": "Sistemas de Generación de Energía Autónomos para Infraestructura de Videovigilancia",
     "client": "Verytel S.A.S.",
     "loadProfile": {
       "power": {
@@ -18,17 +19,17 @@
   "kpis": {
     "primaryRecommendation": "Sistema Solar FV",
     "mostCostEffectiveLcoe": {
-      "value": 0.74,
+      "value": 0.61,
       "unit": "$/kWh",
       "system": "Solar FV"
     },
     "viableAlternativeLcoe": {
-      "value": 0.94,
+      "value": 1.21,
       "unit": "$/kWh",
       "system": "Eólico"
     },
     "notRecommendedLcoe": {
-      "value": 20.40,
+      "value": 16.17,
       "unit": "$/kWh",
       "system": "DMFC"
     }
@@ -36,109 +37,149 @@
   "alternatives": [
     {
       "id": "solar",
-      "name": "Sistema Solar FV",
+      "name": "Sistema Solar Fotovoltaico",
       "context": "Bogotá D.C.",
       "costs": {
-        "capex": 5200,
-        "opexAnnual": 75,
-        "lcoe": 0.74,
-        "replacementCost": 3000
+        "capex": 4924,
+        "opexAnnual": 150,
+        "lcoe": 0.61,
+        "tco20Years": 7924,
+        "replacementCost": 3150
       },
       "design": {
-        "generator": "Panel de 600 Wp",
-        "storage": "7.2 kWh (24V, 300Ah)",
-        "autonomy": "3 días (Batería)"
+        "generator": "Arreglo de 1,000 Wp (2 módulos 500-550 Wp)",
+        "storage": "3x Pylontech UP2500 (24V / 111Ah c/u)",
+        "capacity": "~7.68 kWh",
+        "autonomy": "72 horas (Batería)",
+        "reliability": ">99.7% disponibilidad"
       },
       "logistics": {
-        "maintenance": "Muy bajo (Limpieza anual)",
+        "maintenance": "Bajo (Limpieza semestral)",
+        "frequency": "2 visitas técnicas anuales",
         "dependency": "Nula",
-        "scalabilityNotes": "Excelente. Reducción CAPEX 25-30% para 1,000 unidades."
+        "scalabilityNotes": "Excelente. Estándar de despliegue corporativo. Para 1,000 unidades considerar arquitectura de micro-redes (clústeres).",
+        "footprint": "5.2 m² de captación, ~8 m² área libre de sombras"
+      },
+      "performance": {
+        "availability": "99.77%",
+        "llp": "0.23% anual",
+        "hsp": "4.5 horas sol pico (Bogotá)"
       }
     },
     {
       "id": "eolico",
-      "name": "Sistema Eólico",
+      "name": "Sistema de Micro-Generación Eólica",
       "context": "Alta Guajira",
       "costs": {
-        "capex": 6100,
-        "opexAnnual": 150,
-        "lcoe": 0.94,
-        "replacementCost": 3200
+        "capex": 6200,
+        "opexAnnual": 480,
+        "lcoe": 1.21,
+        "tco20Years": 15800,
+        "replacementCost": 3330
       },
       "design": {
-        "generator": "Turbina de 600 W",
-        "storage": "7.2 kWh (24V, 300Ah)",
-        "autonomy": "3 días (Batería)"
+        "generator": "Micro-turbina de 600 W (eje horizontal)",
+        "storage": "3x Pylontech UP2500 (24V / 111Ah c/u)",
+        "capacity": "~7.68 kWh",
+        "autonomy": "72 horas (Batería)",
+        "windClass": "Clase 7 (Superior)",
+        "windSpeed": "7.0 - 9.0 m/s (a 10m altura)"
       },
       "logistics": {
-        "maintenance": "Moderado (Inspección mecánica anual)",
-        "dependency": "Nula",
-        "scalabilityNotes": "Buena. Reducción CAPEX 25-30% para 1,000 unidades."
+        "maintenance": "Alto (Inspección mecánica semestral)",
+        "frequency": "Inspección física cada 6 meses",
+        "dependency": "Nula (requiere recurso eólico constante)",
+        "scalabilityNotes": "Condicional. Solo viable en sitios de excepción con recurso eólico Clase 7. Para 1,000 unidades requeriría cambio de arquitectura (micro-redes con turbinas de mayor potencia).",
+        "lifetime": "7 años (componentes móviles en ambiente salino)"
+      },
+      "performance": {
+        "powerOutput": "180-240 W continuos a velocidad promedio (8 m/s)",
+        "tower": "9-12 m con cimentación de concreto"
       }
     },
     {
       "id": "dmfc",
-      "name": "Sistema DMFC (Metanol)",
+      "name": "Sistema DMFC (Celda de Combustible Metanol Directo)",
       "context": "Agnóstico a la ubicación",
       "costs": {
-        "capex": 9500,
-        "opexAnnual": 12678,
-        "lcoe": 20.40,
-        "replacementCost": 4000
+        "capex": 12050,
+        "opexAnnual": 9980,
+        "lcoe": 16.17,
+        "tco20Years": 211650,
+        "replacementCost": 10050
       },
       "design": {
-        "generator": "Celda EFOY Pro 2800 (125 W)",
-        "storage": "Batería buffer (24V, 100Ah)",
-        "autonomy": "~17.4 días (Combustible)"
+        "generator": "EFOY Pro 2800 (125 W nominal)",
+        "storage": "1x Pylontech UP2500 (24V / 111Ah)",
+        "capacity": "~2.84 kWh",
+        "autonomy": "17.4 días (Cartucho M28)",
+        "fuelConsumption": "1.61 L/día (0.9 L/kWh)",
+        "fuelCartridge": "Cartucho M28 (28 L)"
       },
       "logistics": {
-        "maintenance": "Extremo (21 visitas/año por nodo)",
-        "dependency": "Extrema",
-        "scalabilityNotes": "Inviable. OPEX escala linealmente (21,000 visitas/año para 1,000 unidades)."
+        "maintenance": "Crítico (21 visitas/año por reabastecimiento)",
+        "frequency": "21 cartuchos M28 anuales por nodo",
+        "dependency": "Extrema (cadena de suministro de metanol)",
+        "scalabilityNotes": "Inviable como fuente primaria. Recomendado exclusivamente como sistema de respaldo híbrido (Solar + DMFC) para infraestructuras críticas, operando <5% del tiempo.",
+        "lifetime": "4,500 horas de operación garantizada (excedida en <1 año como fuente primaria)"
+      },
+      "performance": {
+        "dutyCycle": "~60% (14.3 horas/día)",
+        "emergencyBackup": "37 horas de autonomía de emergencia"
       }
     }
   ],
   "decisionMatrix": {
     "categories": [
       { "name": "LCOE ($/kWh)", "weight": 0.30 },
-      { "name": "CAPEX Inicial", "weight": 0.20 },
-      { "name": "Fiabilidad / Tiempo de Actividad", "weight": 0.25 },
-      { "name": "Complejidad de Mantenimiento", "weight": 0.15 },
-      { "name": "Dependencia Logística", "weight": 0.10 }
+      { "name": "Fiabilidad / Disponibilidad", "weight": 0.25 },
+      { "name": "Complejidad O&M", "weight": 0.20 },
+      { "name": "CAPEX Inicial", "weight": 0.15 },
+      { "name": "Logística de Despliegue", "weight": 0.10 }
     ],
     "scores": [
       {
         "system": "Solar FV",
-        "values": [5, 4, 4, 5, 5],
-        "totalScore": 4.45
+        "values": [5, 5, 5, 4, 4],
+        "totalScore": 4.75
       },
       {
         "system": "Eólico",
-        "values": [4, 3, 4, 3, 5],
-        "totalScore": 3.75
+        "values": [3, 4, 2, 3, 2],
+        "totalScore": 3.05
       },
       {
         "system": "DMFC",
-        "values": [1, 2, 5, 2, 1],
-        "totalScore": 2.45
+        "values": [1, 5, 1, 1, 2],
+        "totalScore": 2.05
       }
     ]
   },
   "strategicRecommendations": [
     {
       "id": "rec1",
-      "title": "Solución Estándar",
-      "recommendation": "Usar **Sistema Solar FV** como la solución por defecto para todos los despliegues."
+      "title": "Estandarización Tecnológica",
+      "recommendation": "Adoptar la arquitectura **Solar 1,000 Wp + Batería Pylontech UP2500 (3 unidades)** como el SKU único de despliegue para la empresa. Esto simplifica la cadena de suministro, la capacitación de técnicos y el inventario de repuestos."
     },
     {
       "id": "rec2",
-      "title": "Arquitectura de Despliegue",
-      "recommendation": "Implementar **Micro-redes** (generación centralizada) para cualquier clúster de 2 o más cámaras en proximidad para maximizar ahorros."
+      "title": "Política de \"Solar Primero\"",
+      "recommendation": "Todo estudio de sitio debe priorizar la ubicación solar. La energía eólica solo se considerará si se demuestra técnicamente que la irradiación solar es inviable en el punto específico."
     },
     {
       "id": "rec3",
-      "title": "Uso Táctico de DMFC",
-      "recommendation": "Relegar la tecnología DMFC **exclusivamente** a un rol de *respaldo* (backup) en sitios de misión crítica donde el costo sea secundario."
+      "title": "Gestión de la Batería",
+      "recommendation": "La migración a la batería nativa de 24V (UP2500) es mandataria para reducir fallos de instalación y costos logísticos en despliegues masivos."
+    },
+    {
+      "id": "rec4",
+      "title": "Arquitectura de Micro-redes",
+      "recommendation": "Para escenarios de gran escala (1,000 unidades), especialmente cuando los nodos se encuentran agrupados geográficamente, implementar **micro-redes o clústeres energéticos** centralizando la generación para reducir CAPEX y simplificar el mantenimiento."
+    },
+    {
+      "id": "rec5",
+      "title": "Uso de DMFC como Respaldo",
+      "recommendation": "La tecnología DMFC no debe usarse como fuente primaria. Su valor reside en la disponibilidad inmediata como sistema de respaldo híbrido (Solar + DMFC) en infraestructuras críticas, permitiendo alcanzar disponibilidad energética total incluso en eventos prolongados de baja radiación."
     }
   ]
 }

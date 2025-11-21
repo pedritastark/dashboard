@@ -1,0 +1,170 @@
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+  Box,
+} from '@mui/material';
+import BoltIcon from '@mui/icons-material/Bolt';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import HomeIcon from '@mui/icons-material/Home';
+
+const Navbar = ({ projectInfo }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    handleClose();
+  };
+
+  const isHome = location.pathname === '/';
+
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 16,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 1300,
+        width: 'calc(100% - 32px)',
+        maxWidth: '1400px',
+      }}
+    >
+      <AppBar 
+        position="static" 
+        elevation={0}
+        sx={{ 
+          background: isHome ? 'rgba(42, 17, 228, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderRadius: '50px',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: isHome ? '0 8px 32px 0 rgba(42, 17, 228, 0.3)' : '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+        }}
+      >
+        <Toolbar sx={{ py: 0.75, px: 2 }}>
+          <BoltIcon sx={{ mr: 1.5, fontSize: 22 }} />
+          <Typography 
+            variant="h6" 
+            component="div" 
+            sx={{ 
+              flexGrow: 1, 
+              fontWeight: 600, 
+              letterSpacing: '-0.01em', 
+              fontSize: '0.9rem',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleNavigation('/')}
+          >
+            {projectInfo.title}
+          </Typography>
+          
+          {!isHome && (
+            <Button
+              onClick={() => handleNavigation('/')}
+              startIcon={<HomeIcon />}
+              sx={{
+                color: 'white',
+                textTransform: 'none',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                mr: 2,
+                borderRadius: '20px',
+                px: 2,
+                py: 0.5,
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                },
+              }}
+            >
+              Inicio
+            </Button>
+          )}
+          
+          <Button
+            id="systems-button"
+            aria-controls={open ? 'systems-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            endIcon={<ArrowDropDownIcon />}
+            sx={{
+              color: 'white',
+              textTransform: 'none',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              mr: 2,
+              borderRadius: '20px',
+              px: 2,
+              py: 0.5,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              },
+            }}
+          >
+            Sistemas
+          </Button>
+          
+          <Menu
+            id="systems-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'systems-button',
+            }}
+            PaperProps={{
+              sx: {
+                mt: 1,
+                borderRadius: 2,
+                minWidth: 180,
+                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+              },
+            }}
+          >
+            <MenuItem onClick={() => handleNavigation('/solar')}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#f59e0b' }} />
+                Sistema Solar FV
+              </Box>
+            </MenuItem>
+            <MenuItem onClick={() => handleNavigation('/eolico')}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#0ea5e9' }} />
+                Sistema Eólico
+              </Box>
+            </MenuItem>
+            <MenuItem onClick={() => handleNavigation('/dmfc')}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#22c55e' }} />
+                Sistema DMFC
+              </Box>
+            </MenuItem>
+          </Menu>
+          
+          <Typography variant="body2" sx={{ opacity: 0.9, fontSize: '0.75rem' }}>
+            {projectInfo.client}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+};
+
+export default Navbar;
