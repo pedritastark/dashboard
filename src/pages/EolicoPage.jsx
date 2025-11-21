@@ -89,8 +89,21 @@ const EolicoPage = () => {
   ];
 
   return (
-    <Box sx={{ bgcolor: eolicoTheme[50], minHeight: '100vh', pt: 10, pb: 4 }}>
-      <Container maxWidth={false} sx={{ p: 1.5 }}>
+    <Box sx={{ 
+      bgcolor: eolicoTheme[50], 
+      minHeight: '100vh', 
+      pt: { xs: 8, sm: 10 }, 
+      pb: { xs: 2, sm: 4 },
+      overflowX: 'hidden',
+    }}>
+      <Container 
+        maxWidth={false} 
+        sx={{ 
+          p: { xs: 1, sm: 1.5 },
+          px: { xs: 1, sm: 1.5 },
+          maxWidth: '100%',
+        }}
+      >
         {/* Header */}
         <Box sx={{ mb: 3, opacity: isLoaded ? 1 : 0, transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)', transition: 'all 0.6s ease' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
@@ -207,12 +220,27 @@ const EolicoPage = () => {
                   Desglose de CAPEX
                 </Typography>
                 <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={capexBreakdown}>
+                  <BarChart 
+                    data={capexBreakdown}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={eolicoTheme[200]} />
-                    <XAxis dataKey="name" stroke={eolicoTheme[700]} tick={{ fontSize: 11 }} />
-                    <YAxis stroke={eolicoTheme[700]} tick={{ fontSize: 11 }} />
+                    <XAxis dataKey="name" stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                    <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                    <Bar 
+                      dataKey="value" 
+                      radius={[4, 4, 0, 0]}
+                      isAnimationActive={isLoaded}
+                      animationBegin={isLoaded ? 500 : 0}
+                      animationDuration={1500}
+                      animationEasing="ease-out"
+                    >
                       {capexBreakdown.map((entry, index) => (
                         <Cell key={index} fill={entry.color} />
                       ))}
@@ -229,10 +257,18 @@ const EolicoPage = () => {
                   Curva de Potencia vs Velocidad del Viento
                 </Typography>
                 <ResponsiveContainer width="100%" height={250}>
-                  <LineChart data={powerOutputData}>
+                  <LineChart 
+                    data={powerOutputData}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={eolicoTheme[200]} />
-                    <XAxis dataKey="label" stroke={eolicoTheme[700]} />
-                    <YAxis stroke={eolicoTheme[700]} label={{ value: 'Potencia (W)', angle: -90, position: 'insideLeft' }} />
+                    <XAxis dataKey="label" stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip />
                     <Line type="monotone" dataKey="potencia" stroke={eolicoTheme[500]} strokeWidth={3} dot={{ fill: eolicoTheme[500] }} />
                   </LineChart>
@@ -261,7 +297,21 @@ const EolicoPage = () => {
                 <Typography variant="h6" sx={{ mb: 2, color: eolicoTheme[900], fontWeight: 600 }}>
                   Especificaciones Técnicas
                 </Typography>
-                <TableContainer>
+                <TableContainer
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    '&::-webkit-scrollbar': {
+                      height: 8,
+                      width: 8,
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      borderRadius: 4,
+                    },
+                  }}
+                >
                   <Table size="small">
                     <TableBody>
                       <TableRow>
@@ -358,13 +408,31 @@ const EolicoPage = () => {
                 Viabilidad por Escala de Despliegue
               </Typography>
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={scalabilityData}>
+                  <BarChart 
+                    data={scalabilityData}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={eolicoTheme[200]} />
-                    <XAxis dataKey="escala" stroke={eolicoTheme[700]} />
-                    <YAxis yAxisId="left" stroke={eolicoTheme[700]} label={{ value: 'Unidades', angle: -90, position: 'insideLeft' }} />
-                    <YAxis yAxisId="right" orientation="right" stroke={eolicoTheme[700]} domain={[0, 5]} label={{ value: 'Viabilidad (1-5)', angle: 90, position: 'insideRight' }} />
+                    <XAxis dataKey="escala" stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis yAxisId="left" stroke={eolicoTheme[700]} tick={{ fontSize: 10 }} width={35} />
+                    <YAxis yAxisId="right" orientation="right" stroke={eolicoTheme[700]} domain={[0, 5]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip />
-                    <Bar yAxisId="left" dataKey="unidades" fill={eolicoTheme[400]} radius={[4, 4, 0, 0]} name="Unidades" />
+                    <Bar 
+                      yAxisId="left" 
+                      dataKey="unidades" 
+                      fill={eolicoTheme[400]} 
+                      radius={[4, 4, 0, 0]} 
+                      name="Unidades"
+                      isAnimationActive={isLoaded}
+                      animationBegin={isLoaded ? 500 : 0}
+                      animationDuration={1500}
+                      animationEasing="ease-out"
+                    />
                     <Line yAxisId="right" type="monotone" dataKey="viabilidad" stroke={eolicoTheme[700]} strokeWidth={3} name="Viabilidad" />
                   </BarChart>
                 </ResponsiveContainer>

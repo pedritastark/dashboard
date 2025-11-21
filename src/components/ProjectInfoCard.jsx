@@ -25,8 +25,8 @@ const InfoBox = styled(Box)(({ theme }) => ({
 
 const ProjectInfoCard = ({ projectInfo }) => {
   return (
-    <StyledCard elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <StyledCard elevation={0} sx={{ height: { xs: 'auto', lg: '100%' }, display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <CardContent sx={{ p: { xs: 1.5, sm: 2 }, flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
         <Typography 
           variant="subtitle1" 
           component="h2"
@@ -40,17 +40,17 @@ const ProjectInfoCard = ({ projectInfo }) => {
           Perfil de Carga
         </Typography>
         <Grid container spacing={1} direction="column" sx={{ flex: 1, height: '100%' }}>
-          <Grid item xs={12} sx={{ flex: 1, display: 'flex' }}>
-            <InfoBox sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: 2, minHeight: 'calc(50% - 4px)', position: 'relative' }}>
+          <Grid item xs={12} sx={{ flex: 1, display: 'flex', minHeight: { xs: '120px', sm: 'auto' } }}>
+            <InfoBox sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: { xs: 1.5, sm: 2 }, minHeight: { xs: '120px', sm: 'calc(50% - 4px)' }, position: 'relative', width: '100%', overflow: 'hidden' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                 <PowerIcon 
                   sx={{ 
-                    fontSize: 56,
+                    fontSize: { xs: 40, sm: 56 },
                     color: 'primary.700',
                   }} 
                 />
               </Box>
-              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', py: 1 }}>
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', py: 1, minWidth: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
                   <Box>
                     <Typography 
@@ -59,7 +59,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                       sx={{ 
                         color: 'text.secondary',
                         fontWeight: 600,
-                        fontSize: '1.1rem',
+                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
                         lineHeight: 1.2,
                         mb: 0.25,
                       }}
@@ -72,7 +72,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                       sx={{ 
                         color: 'text.secondary',
                         fontWeight: 600,
-                        fontSize: '1.1rem',
+                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
                         lineHeight: 1.2,
                       }}
                     >
@@ -86,7 +86,8 @@ const ProjectInfoCard = ({ projectInfo }) => {
                   sx={{ 
                     fontWeight: 700, 
                     color: 'primary.900',
-                    fontSize: '1.5rem',
+                    fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                    lineHeight: 1.2,
                   }}
                 >
                   {projectInfo.loadProfile.power.value}{' '}
@@ -96,7 +97,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                     sx={{ 
                       color: 'text.secondary',
                       fontWeight: 500,
-                      fontSize: '1rem',
+                      fontSize: { xs: '0.85rem', sm: '1rem' },
                     }}
                   >
                     {projectInfo.loadProfile.power.unit}
@@ -105,17 +106,17 @@ const ProjectInfoCard = ({ projectInfo }) => {
               </Box>
             </InfoBox>
           </Grid>
-          <Grid item xs={12} sx={{ flex: 1, display: 'flex' }}>
-            <InfoBox sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: 2, minHeight: 'calc(50% - 4px)', position: 'relative' }}>
+          <Grid item xs={12} sx={{ flex: 1, display: 'flex', minHeight: { xs: '120px', sm: 'auto' } }}>
+            <InfoBox sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: { xs: 1.5, sm: 2 }, minHeight: { xs: '120px', sm: 'calc(50% - 4px)' }, position: 'relative', width: '100%', overflow: 'hidden' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                 <EnergySavingsLeafIcon 
                   sx={{ 
-                    fontSize: 56,
+                    fontSize: { xs: 40, sm: 56 },
                     color: 'primary.700',
                   }} 
                 />
               </Box>
-              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', py: 1 }}>
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', py: 1, minWidth: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
                   <Box>
                     <Typography 
@@ -124,7 +125,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                       sx={{ 
                         color: 'text.secondary',
                         fontWeight: 600,
-                        fontSize: '1.1rem',
+                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
                         lineHeight: 1.2,
                         mb: 0.25,
                       }}
@@ -137,7 +138,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                       sx={{ 
                         color: 'text.secondary',
                         fontWeight: 600,
-                        fontSize: '1.1rem',
+                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
                         lineHeight: 1.2,
                       }}
                     >
@@ -151,7 +152,8 @@ const ProjectInfoCard = ({ projectInfo }) => {
                   sx={{ 
                     fontWeight: 700, 
                     color: 'primary.900',
-                    fontSize: '1.5rem',
+                    fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                    lineHeight: 1.2,
                   }}
                 >
                   {projectInfo.loadProfile.energy.value}{' '}
@@ -161,7 +163,7 @@ const ProjectInfoCard = ({ projectInfo }) => {
                     sx={{ 
                       color: 'text.secondary',
                       fontWeight: 500,
-                      fontSize: '1rem',
+                      fontSize: { xs: '0.85rem', sm: '1rem' },
                     }}
                   >
                     {projectInfo.loadProfile.energy.unit}

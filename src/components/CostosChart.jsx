@@ -16,7 +16,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
   background: '#ffffff',
   border: `1px solid ${theme.palette.primary[200]}`,
   borderRadius: theme.shape.borderRadius,
-  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   opacity: 0,
@@ -49,19 +48,30 @@ const CostosChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
   }));
 
   return (
-    <StyledCard elevation={0} className={animated ? 'loaded' : ''}>
-      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <StyledCard 
+      elevation={0} 
+      className={animated ? 'loaded' : ''}
+      sx={{ 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column',
+        opacity: isLoaded ? 1 : 0,
+        transform: isLoaded ? 'translateY(0) scaleY(1)' : 'translateY(100px) scaleY(0.3)',
+        transition: 'opacity 2s ease-out, transform 2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+      }}
+    >
+      <CardContent sx={{ p: { xs: 1.5, sm: 2 }, display: 'flex', flexDirection: 'column' }}>
         <Typography variant="subtitle1" component="h2" sx={{ fontWeight: 600, mb: 1.5, color: 'primary.900', fontSize: '0.875rem' }}>
           Comparación de Costos: CAPEX vs OPEX Anual
         </Typography>
-        <Box sx={{ width: '100%', height: '100%', minHeight: 280, flex: 1 }}>
-          <ResponsiveContainer>
+        <Box sx={{ width: '100%', height: { xs: 250, sm: 280 } }}>
+          <ResponsiveContainer width="100%" height={250}>
             <BarChart
               data={chartData}
               margin={{
                 top: 10,
-                right: 20,
-                left: 10,
+                right: 5,
+                left: -10,
                 bottom: 5,
               }}
             >
@@ -69,12 +79,12 @@ const CostosChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
               <XAxis 
                 dataKey="name" 
                 stroke="#64748b" 
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 10 }}
               />
               <YAxis 
                 stroke="#64748b" 
-                tick={{ fontSize: 11 }}
-                width={60}
+                tick={{ fontSize: 10 }}
+                width={35}
               />
               <Tooltip 
                 formatter={(value, name) => [`$${value.toLocaleString()}`, name]}
@@ -95,8 +105,9 @@ const CostosChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
                 fill="#475569" 
                 name="CAPEX ($)" 
                 radius={[4, 4, 0, 0]}
-                animationBegin={animated ? (delay * 1000 + 500) : 0}
-                animationDuration={2500}
+                isAnimationActive={animated}
+                animationBegin={animated ? (delay * 1000) : 0}
+                animationDuration={1500}
                 animationEasing="ease-out"
               />
               <Bar 
@@ -104,8 +115,9 @@ const CostosChart = ({ alternatives, isLoaded = false, delay = 0 }) => {
                 fill="#64748b" 
                 name="OPEX Anual ($)" 
                 radius={[4, 4, 0, 0]}
-                animationBegin={animated ? (delay * 1000 + 700) : 0}
-                animationDuration={2500}
+                isAnimationActive={animated}
+                animationBegin={animated ? (delay * 1000 + 200) : 0}
+                animationDuration={1500}
                 animationEasing="ease-out"
               />
             </BarChart>

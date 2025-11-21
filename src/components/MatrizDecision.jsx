@@ -82,6 +82,8 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
   }, [isLoaded]);
 
   // Preparar datos para el gráfico de radar
+  // Para la animación desde el centro, los datos finales se usan directamente
+  // Recharts animará desde 0 automáticamente si usamos isAnimationActive
   const radarData = categories.map((cat, index) => {
     const punto = { categoria: cat.name };
     scores.forEach(score => {
@@ -102,18 +104,28 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
   });
 
   return (
-    <StyledCard elevation={0}>
-      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <StyledCard elevation={0} sx={{ height: { xs: 'auto', lg: '100%' }, display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <CardContent sx={{ p: { xs: 1.5, sm: 2 }, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
         <Typography variant="caption" color="text.secondary" sx={{ mb: 2, fontWeight: 500, fontSize: '0.7rem' }}>
           Comparación de sistemas según múltiples criterios (escala 1-5, con pesos ponderados)
         </Typography>
         
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, flex: 1, overflow: 'hidden' }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', lg: 'row' }, 
+          gap: 2, 
+          flex: 1, 
+          overflow: 'hidden',
+          alignItems: { xs: 'center', lg: 'stretch' },
+        }}>
           {/* Gráfico de Radar - Izquierda */}
           <Box 
             sx={{ 
               flex: 1,
               minWidth: 0,
+              height: { xs: 300, lg: 'auto' },
+              minHeight: { xs: 300, lg: 400 },
+              width: { xs: '100%', lg: 'auto' },
               opacity: radarAnimated ? 1 : 0,
               transform: radarAnimated ? 'scale(1)' : 'scale(0.5)',
               transition: 'opacity 2s ease-out, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -122,17 +134,17 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
               justifyContent: 'center',
             }}
           >
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={300}>
               <RadarChart data={radarData}>
                 <PolarGrid stroke="#d8e1ff" strokeDasharray="3 3" />
                 <PolarAngleAxis 
                   dataKey="categoria" 
-                  tick={{ fill: '#64748b', fontSize: 10, fontWeight: 500 }}
+                  tick={{ fill: '#64748b', fontSize: { xs: 8, sm: 10 }, fontWeight: 500 }}
                 />
                 <PolarRadiusAxis 
                   angle={90} 
                   domain={[0, 5]} 
-                  tick={{ fill: '#64748b', fontSize: 9 }}
+                  tick={{ fill: '#64748b', fontSize: { xs: 8, sm: 9 } }}
                   tickCount={6}
                 />
                 {sistemas.map((sistema, index) => (
@@ -145,13 +157,14 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
                     fillOpacity={sistema.fillOpacity}
                     strokeWidth={2}
                     dot={{ r: 3, fill: sistema.stroke }}
-                    animationBegin={radarAnimated ? (1500 + index * 300) : 0}
+                    isAnimationActive={radarAnimated}
+                    animationBegin={radarAnimated ? (index * 100) : 0}
                     animationDuration={2000}
                     animationEasing="ease-out"
                   />
                 ))}
                 <Legend 
-                  wrapperStyle={{ paddingTop: 10, fontSize: '10px' }}
+                  wrapperStyle={{ paddingTop: 10, fontSize: { xs: '9px', sm: '10px' } }}
                   iconType="circle"
                   iconSize={8}
                 />
@@ -164,12 +177,13 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
             sx={{ 
               flex: 1,
               minWidth: 0,
+              width: { xs: '100%', lg: 'auto' },
               opacity: tableAnimated ? 1 : 0,
               transform: tableAnimated ? 'translateX(0)' : 'translateX(30px)',
               transition: 'opacity 1.5s ease-out, transform 1.5s ease-out',
               display: 'flex',
               flexDirection: 'column',
-              overflow: 'hidden',
+              overflow: { xs: 'visible', lg: 'hidden' },
             }}
           >
             <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600, mb: 1.5, color: 'primary.900', fontSize: '0.75rem' }}>
@@ -182,11 +196,30 @@ const MatrizDecision = ({ decisionMatrix, isLoaded = false }) => {
                 borderRadius: 1.5,
                 border: '1px solid',
                 borderColor: 'primary.200',
-                overflow: 'auto',
+                overflowX: { xs: 'auto', lg: 'auto' },
+                overflowY: 'auto',
                 flex: 1,
+                maxWidth: '100%',
+                width: '100%',
+                WebkitOverflowScrolling: 'touch',
+                '&::-webkit-scrollbar': {
+                  height: 8,
+                  width: 8,
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                  borderRadius: 4,
+                },
               }}
             >
-            <Table size="small" stickyHeader>
+            <Table 
+              size="small" 
+              stickyHeader
+              sx={{
+                minWidth: { xs: 500, sm: 600, lg: 'auto' },
+                width: '100%',
+              }}
+            >
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ 

@@ -23,8 +23,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const DisenoTable = ({ alternatives }) => {
   return (
-    <StyledCard elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <StyledCard elevation={0} sx={{ height: { xs: 'auto', lg: '100%' }, display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <CardContent sx={{ p: { xs: 1.5, sm: 2 }, flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
         <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5, color: 'primary.900', fontSize: '0.75rem' }}>
           Especificaciones Técnicas
         </Typography>
@@ -35,11 +35,28 @@ const DisenoTable = ({ alternatives }) => {
             borderRadius: 1.5,
             border: '1px solid',
             borderColor: 'primary.200',
-            overflow: 'auto',
+            overflowX: 'auto',
+            overflowY: 'auto',
             flex: 1,
+            maxWidth: '100%',
+            WebkitOverflowScrolling: 'touch',
+            '&::-webkit-scrollbar': {
+              height: 8,
+              width: 8,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              borderRadius: 4,
+            },
           }}
         >
-          <Table size="small" stickyHeader>
+          <Table 
+            size="small" 
+            stickyHeader
+            sx={{
+              minWidth: { xs: 600, sm: 'auto' },
+            }}
+          >
             <TableHead>
               <TableRow>
                 <TableCell sx={{ 

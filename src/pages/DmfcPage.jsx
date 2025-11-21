@@ -94,8 +94,21 @@ const DmfcPage = () => {
   ];
 
   return (
-    <Box sx={{ bgcolor: dmfcTheme[50], minHeight: '100vh', pt: 10, pb: 4 }}>
-      <Container maxWidth={false} sx={{ p: 1.5 }}>
+    <Box sx={{ 
+      bgcolor: dmfcTheme[50], 
+      minHeight: '100vh', 
+      pt: { xs: 8, sm: 10 }, 
+      pb: { xs: 2, sm: 4 },
+      overflowX: 'hidden',
+    }}>
+      <Container 
+        maxWidth={false} 
+        sx={{ 
+          p: { xs: 1, sm: 1.5 },
+          px: { xs: 1, sm: 1.5 },
+          maxWidth: '100%',
+        }}
+      >
         {/* Header */}
         <Box sx={{ mb: 3, opacity: isLoaded ? 1 : 0, transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)', transition: 'all 0.6s ease' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
@@ -222,12 +235,27 @@ const DmfcPage = () => {
                   Desglose de CAPEX
                 </Typography>
                 <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={capexBreakdown}>
+                  <BarChart 
+                    data={capexBreakdown}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={dmfcTheme[200]} />
-                    <XAxis dataKey="name" stroke={dmfcTheme[700]} tick={{ fontSize: 11 }} />
-                    <YAxis stroke={dmfcTheme[700]} tick={{ fontSize: 11 }} />
+                    <XAxis dataKey="name" stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                    <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                    <Bar 
+                      dataKey="value" 
+                      radius={[4, 4, 0, 0]}
+                      isAnimationActive={isLoaded}
+                      animationBegin={isLoaded ? 500 : 0}
+                      animationDuration={1500}
+                      animationEasing="ease-out"
+                    >
                       {capexBreakdown.map((entry, index) => (
                         <RechartsCell key={index} fill={entry.color} />
                       ))}
@@ -244,12 +272,27 @@ const DmfcPage = () => {
                   Desglose de OPEX Anual
                 </Typography>
                 <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={opexBreakdown}>
+                  <BarChart 
+                    data={opexBreakdown}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={dmfcTheme[200]} />
-                    <XAxis dataKey="name" stroke={dmfcTheme[700]} tick={{ fontSize: 11 }} />
-                    <YAxis stroke={dmfcTheme[700]} tick={{ fontSize: 11 }} />
+                    <XAxis dataKey="name" stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                    <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                    <Bar 
+                      dataKey="value" 
+                      radius={[4, 4, 0, 0]}
+                      isAnimationActive={isLoaded}
+                      animationBegin={isLoaded ? 500 : 0}
+                      animationDuration={1500}
+                      animationEasing="ease-out"
+                    >
                       {opexBreakdown.map((entry, index) => (
                         <RechartsCell key={index} fill={entry.color} />
                       ))}
@@ -310,7 +353,21 @@ const DmfcPage = () => {
                 <Typography variant="h6" sx={{ mb: 2, color: dmfcTheme[900], fontWeight: 600 }}>
                   Especificaciones Técnicas
                 </Typography>
-                <TableContainer>
+                <TableContainer
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    '&::-webkit-scrollbar': {
+                      height: 8,
+                      width: 8,
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      borderRadius: 4,
+                    },
+                  }}
+                >
                   <Table size="small">
                     <TableBody>
                       <TableRow>
@@ -427,13 +484,31 @@ const DmfcPage = () => {
                 Impacto Logístico por Escala
               </Typography>
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={scalabilityData}>
+                  <BarChart 
+                    data={scalabilityData}
+                    margin={{
+                      top: 10,
+                      right: 5,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" stroke={dmfcTheme[200]} />
-                    <XAxis dataKey="escala" stroke={dmfcTheme[700]} />
-                    <YAxis yAxisId="left" stroke={dmfcTheme[700]} label={{ value: 'Cartuchos/año', angle: -90, position: 'insideLeft' }} />
-                    <YAxis yAxisId="right" orientation="right" stroke={dmfcTheme[700]} domain={[0, 5]} label={{ value: 'Viabilidad (0-5)', angle: 90, position: 'insideRight' }} />
+                    <XAxis dataKey="escala" stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} />
+                    <YAxis yAxisId="left" stroke={dmfcTheme[700]} tick={{ fontSize: 10 }} width={35} />
+                    <YAxis yAxisId="right" orientation="right" stroke={dmfcTheme[700]} domain={[0, 5]} tick={{ fontSize: 10 }} width={35} />
                     <Tooltip />
-                    <Bar yAxisId="left" dataKey="cartuchos" fill={dmfcTheme[400]} radius={[4, 4, 0, 0]} name="Cartuchos M28/año" />
+                    <Bar 
+                      yAxisId="left" 
+                      dataKey="cartuchos" 
+                      fill={dmfcTheme[400]} 
+                      radius={[4, 4, 0, 0]} 
+                      name="Cartuchos M28/año"
+                      isAnimationActive={isLoaded}
+                      animationBegin={isLoaded ? 500 : 0}
+                      animationDuration={1500}
+                      animationEasing="ease-out"
+                    />
                   </BarChart>
                 </ResponsiveContainer>
                 <Box sx={{ mt: 2, p: 2, bgcolor: dmfcTheme[50], borderRadius: 1, border: `1px solid ${dmfcTheme[200]}` }}>

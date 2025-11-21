@@ -26,14 +26,18 @@ const Home = () => {
       sx={{ 
         bgcolor: 'background.default',
         minHeight: '100vh',
-        pt: 10,
-        pb: 4,
+        pt: { xs: 8, sm: 10 },
+        pb: { xs: 2, sm: 4 },
+        px: { xs: 0, sm: 0 },
+        overflowX: 'hidden',
       }}
     >
       <Container 
         maxWidth={false}
         sx={{
-          p: 1.5,
+          p: { xs: 1, sm: 1.5 },
+          maxWidth: '100%',
+          width: '100%',
         }}
       >
         <Box
@@ -41,13 +45,13 @@ const Home = () => {
             display: 'grid',
             gridTemplateColumns: {
               xs: '1fr',
-              lg: '450px 1fr 1fr',
+              lg: 'minmax(300px, 450px) 1fr 1fr',
             },
             gridTemplateRows: {
-              xs: 'auto',
+              xs: 'auto auto auto auto auto auto',
               lg: 'auto auto auto',
             },
-            gap: 1.5,
+            gap: { xs: 1, sm: 1.5 },
             gridTemplateAreas: {
               xs: `
                 "project"
@@ -63,6 +67,9 @@ const Home = () => {
                 "table table recommendation"
               `,
             },
+            width: '100%',
+            maxWidth: '100%',
+            minWidth: 0,
           }}
         >
           {/* Project Info - Perfil de Carga - Top Left */}
@@ -72,6 +79,8 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)',
               transition: 'opacity 0.6s ease, transform 0.6s ease',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <ProjectInfoCard projectInfo={projectInfo} />
@@ -84,6 +93,8 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)',
               transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <CostosChart alternatives={alternatives} isLoaded={isLoaded} delay={0.8} />
@@ -96,6 +107,8 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)',
               transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <LcoeChart alternatives={alternatives} isLoaded={isLoaded} delay={1} />
@@ -108,6 +121,8 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'scale(1)' : 'scale(0.5)',
               transition: 'opacity 2s ease-out 1.2s, transform 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <MatrizDecision decisionMatrix={decisionMatrix} isLoaded={isLoaded} />
@@ -120,6 +135,8 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'translateX(0)' : 'translateX(-20px)',
               transition: 'opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <DisenoTable alternatives={alternatives} />
@@ -132,18 +149,22 @@ const Home = () => {
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? 'translateX(0)' : 'translateX(20px)',
               transition: 'opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s',
+              width: '100%',
+              minWidth: 0,
             }}
           >
             <Box
               sx={{
-                p: 2,
+                p: { xs: 1.5, sm: 2 },
                 bgcolor: 'primary.50',
                 borderRadius: 2,
                 border: '2px solid',
                 borderColor: 'primary.300',
-                height: '100%',
+                minHeight: { xs: 'auto', lg: '100%' },
                 display: 'flex',
                 flexDirection: 'column',
+                width: '100%',
+                overflow: 'hidden',
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>

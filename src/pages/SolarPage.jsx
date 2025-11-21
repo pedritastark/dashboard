@@ -91,8 +91,21 @@ const SolarPage = () => {
   ];
 
   return (
-    <Box sx={{ bgcolor: solarTheme[50], minHeight: '100vh', pt: 10, pb: 4 }}>
-      <Container maxWidth={false} sx={{ p: 1.5 }}>
+    <Box sx={{ 
+      bgcolor: solarTheme[50], 
+      minHeight: '100vh', 
+      pt: { xs: 8, sm: 10 }, 
+      pb: { xs: 2, sm: 4 },
+      overflowX: 'hidden',
+    }}>
+      <Container 
+        maxWidth={false} 
+        sx={{ 
+          p: { xs: 1, sm: 1.5 },
+          px: { xs: 1, sm: 1.5 },
+          maxWidth: '100%',
+        }}
+      >
         {/* Header */}
         <Box sx={{ mb: 3, opacity: isLoaded ? 1 : 0, transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)', transition: 'all 0.6s ease' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
@@ -209,12 +222,35 @@ const SolarPage = () => {
                 Desglose de CAPEX
               </Typography>
               <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={capexBreakdown}>
+                <BarChart 
+                  data={capexBreakdown}
+                  margin={{
+                    top: 10,
+                    right: 5,
+                    left: -10,
+                    bottom: 0,
+                  }}
+                >
                   <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
-                  <XAxis dataKey="name" stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
-                  <YAxis stroke={solarTheme[700]} tick={{ fontSize: 11 }} />
+                  <XAxis 
+                    dataKey="name" 
+                    stroke={solarTheme[700]} 
+                    tick={{ fontSize: 10 }}
+                  />
+                  <YAxis 
+                    stroke={solarTheme[700]} 
+                    tick={{ fontSize: 10 }}
+                    width={35}
+                  />
                   <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                  <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                  <Bar 
+                    dataKey="value" 
+                    radius={[4, 4, 0, 0]}
+                    isAnimationActive={isLoaded}
+                    animationBegin={isLoaded ? 500 : 0}
+                    animationDuration={1500}
+                    animationEasing="ease-out"
+                  >
                     {capexBreakdown.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
@@ -230,7 +266,21 @@ const SolarPage = () => {
               <Typography variant="h6" sx={{ mb: 2, color: solarTheme[900], fontWeight: 600 }}>
                 Especificaciones Técnicas
               </Typography>
-              <TableContainer>
+              <TableContainer
+                sx={{
+                  maxWidth: '100%',
+                  overflowX: 'auto',
+                  WebkitOverflowScrolling: 'touch',
+                  '&::-webkit-scrollbar': {
+                    height: 8,
+                    width: 8,
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderRadius: 4,
+                  },
+                }}
+              >
                 <Table size="small">
                   <TableBody>
                     <TableRow>
@@ -272,16 +322,24 @@ const SolarPage = () => {
                 Análisis de Escalabilidad
               </Typography>
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={scalabilityData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
-                    <XAxis dataKey="escala" stroke={solarTheme[700]} />
-                    <YAxis yAxisId="left" stroke={solarTheme[700]} />
-                    <YAxis yAxisId="right" orientation="right" stroke={solarTheme[700]} />
-                    <Tooltip />
-                    <Line yAxisId="left" type="monotone" dataKey="superficie" stroke={solarTheme[400]} strokeWidth={3} name="Superficie (m²)" />
-                    <Line yAxisId="right" type="monotone" dataKey="baterias" stroke={solarTheme[600]} strokeWidth={3} name="Baterías" />
-                  </LineChart>
-                </ResponsiveContainer>
+                <LineChart 
+                  data={scalabilityData}
+                  margin={{
+                    top: 10,
+                    right: 5,
+                    left: -10,
+                    bottom: 0,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke={solarTheme[200]} />
+                  <XAxis dataKey="escala" stroke={solarTheme[700]} tick={{ fontSize: 10 }} />
+                  <YAxis yAxisId="left" stroke={solarTheme[700]} tick={{ fontSize: 10 }} width={35} />
+                  <YAxis yAxisId="right" orientation="right" stroke={solarTheme[700]} tick={{ fontSize: 10 }} width={35} />
+                  <Tooltip />
+                  <Line yAxisId="left" type="monotone" dataKey="superficie" stroke={solarTheme[400]} strokeWidth={3} name="Superficie (m²)" />
+                  <Line yAxisId="right" type="monotone" dataKey="baterias" stroke={solarTheme[600]} strokeWidth={3} name="Baterías" />
+                </LineChart>
+              </ResponsiveContainer>
             </CardContent>
           </StyledCard>
         </Box>

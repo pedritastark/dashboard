@@ -75,11 +75,11 @@ const Navbar = ({ projectInfo }) => {
     <Box
       sx={{
         position: 'fixed',
-        top: 16,
+        top: { xs: 8, sm: 16 },
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 1300,
-        width: 'calc(100% - 32px)',
+        width: { xs: 'calc(100% - 16px)', sm: 'calc(100% - 32px)' },
         maxWidth: '1400px',
       }}
     >
@@ -90,13 +90,20 @@ const Navbar = ({ projectInfo }) => {
           background: navbarTheme.background,
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
-          borderRadius: '50px',
+          borderRadius: { xs: '30px', sm: '50px' },
           border: '1px solid rgba(255, 255, 255, 0.2)',
           boxShadow: navbarTheme.boxShadow,
         }}
       >
-        <Toolbar sx={{ py: 0.75, px: 2 }}>
-          <BoltIcon sx={{ mr: 1.5, fontSize: 22 }} />
+        <Toolbar sx={{ 
+          py: { xs: 0.5, sm: 0.75 }, 
+          px: { xs: 1.5, sm: 2 },
+          minHeight: { xs: '48px !important', sm: '56px !important' },
+        }}>
+          <BoltIcon sx={{ 
+            mr: { xs: 1, sm: 1.5 }, 
+            fontSize: { xs: 18, sm: 22 } 
+          }} />
           <Typography 
             variant="h6" 
             component="div" 
@@ -104,8 +111,11 @@ const Navbar = ({ projectInfo }) => {
               flexGrow: 1, 
               fontWeight: 600, 
               letterSpacing: '-0.01em', 
-              fontSize: '0.9rem',
+              fontSize: { xs: '0.75rem', sm: '0.9rem' },
               cursor: 'pointer',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             }}
             onClick={() => handleNavigation('/')}
           >
@@ -115,22 +125,25 @@ const Navbar = ({ projectInfo }) => {
           {!isHome && (
             <Button
               onClick={() => handleNavigation('/')}
-              startIcon={<HomeIcon />}
+              startIcon={<HomeIcon sx={{ fontSize: { xs: 16, sm: 20 } }} />}
               sx={{
                 color: 'white',
                 textTransform: 'none',
-                fontSize: '0.875rem',
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
                 fontWeight: 500,
-                mr: 2,
+                mr: { xs: 1, sm: 2 },
                 borderRadius: '20px',
-                px: 2,
-                py: 0.5,
+                px: { xs: 1, sm: 2 },
+                py: { xs: 0.25, sm: 0.5 },
+                minWidth: { xs: 'auto', sm: '64px' },
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 },
               }}
             >
-              Inicio
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                Inicio
+              </Box>
             </Button>
           )}
           
@@ -140,22 +153,25 @@ const Navbar = ({ projectInfo }) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
-            endIcon={<ArrowDropDownIcon />}
+            endIcon={<ArrowDropDownIcon sx={{ fontSize: { xs: 16, sm: 20 } }} />}
             sx={{
               color: 'white',
               textTransform: 'none',
-              fontSize: '0.875rem',
+              fontSize: { xs: '0.7rem', sm: '0.875rem' },
               fontWeight: 500,
-              mr: 2,
+              mr: { xs: 1, sm: 2 },
               borderRadius: '20px',
-              px: 2,
-              py: 0.5,
+              px: { xs: 1, sm: 2 },
+              py: { xs: 0.25, sm: 0.5 },
+              minWidth: { xs: 'auto', sm: '80px' },
               '&:hover': {
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
               },
             }}
           >
-            Sistemas
+            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+              Sistemas
+            </Box>
           </Button>
           
           <Menu
@@ -170,7 +186,7 @@ const Navbar = ({ projectInfo }) => {
               sx: {
                 mt: 1,
                 borderRadius: 2,
-                minWidth: 180,
+                minWidth: { xs: 150, sm: 180 },
                 boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
               },
             }}
@@ -195,7 +211,14 @@ const Navbar = ({ projectInfo }) => {
             </MenuItem>
           </Menu>
           
-          <Typography variant="body2" sx={{ opacity: 0.9, fontSize: '0.75rem' }}>
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              opacity: 0.9, 
+              fontSize: { xs: '0.65rem', sm: '0.75rem' },
+              display: { xs: 'none', sm: 'block' },
+            }}
+          >
             {projectInfo.client}
           </Typography>
         </Toolbar>
